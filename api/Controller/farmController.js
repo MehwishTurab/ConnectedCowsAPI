@@ -48,6 +48,7 @@ exports.fetchallFarms = function (req, res) {
 
 //Function To Fetch a farm
 exports.fetchonefarm =  function (req,res){
+    console.log(req.params.id);
     Farm.findOne(
         {
            _id: req.params.id
@@ -67,11 +68,39 @@ exports.fetchonefarm =  function (req,res){
         }
     );
 };
+
+exports.UpdateFarm = function (req, res) {
+    const id = req.params.id;
+    const updateOps = {};
+    for (const ops of req.body) {
+        updateOps[ops.propName] = ops.value;
+    }
+    Farm.update({ _id: id}, { $set: updateOps})
+        .then(farm => {
+            if (!farm) {
+                return res.status(404).send({
+                    message: "Farm not found with ID " + req.params.id
+                });
+            }
+            res.send({
+                message: "Farm Updated successfully!"
+            });
+        }).catch(err => {
+            if (err.kind === '_id' || err.name === 'NotFound') {
+                return res.status(404).send({
+                    message: "Farm not found with ID " + req.params.id
+                });
+            }
+            return res.status(500).send({
+                message: "Could not update farm with ID " + req.params.id
+            });
+        });
+}
    
 //Function to Delete an Employee
 exports.DeleteFarm = function (req, res) {
     Farm.findOneAndRemove({
-            farm_id: req.body.farm_id
+            _id: req.params.id
         })
         .then(farm => {
             if (!farm) {
@@ -94,32 +123,7 @@ exports.DeleteFarm = function (req, res) {
         });
 }
 
-exports.UpdateFarm = function (req, res) {
-    const updateOps = {};
-    for (const ops of req.body) {
-        updateOps[ops.propName] = ops.value;
-    }
-    Farm.update({ _id: _id}, { $set: updateOps})
-        .then(farm => {
-            if (!farm) {
-                return res.status(404).send({
-                    message: "Farm not found with ID " + req.body._id
-                });
-            }
-            res.send({
-                message: "Farm Updated successfully!"
-            });
-        }).catch(err => {
-            if (err.kind === '_id' || err.name === 'NotFound') {
-                return res.status(404).send({
-                    message: "Farm not found with ID " + req.body._id
-                });
-            }
-            return res.status(500).send({
-                message: "Could not update farm with ID " + req.params.farm
-            });
-        });
-}
+
 
 
 
