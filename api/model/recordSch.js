@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const RecordSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    record_id: mongoose.Schema.Types.ObjectId,
+    cattleid: {type: String, required: true},
     temp: { type: Number, required: true }
 });
 

@@ -48,7 +48,6 @@ exports.fetchallFarms = function (req, res) {
 
 //Function To Fetch a farm
 exports.fetchonefarm =  function (req,res){
-    console.log(req.params.id);
     Farm.findOne(
         {
            _id: req.params.id
@@ -57,7 +56,6 @@ exports.fetchonefarm =  function (req,res){
             f_name: true,
             f_address: true
         },
-
         // callback function
         (err, farm) => {
             if (err) return res.status(200).send(err)
