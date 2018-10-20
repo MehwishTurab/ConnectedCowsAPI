@@ -44,7 +44,7 @@ exports.fetchallOwners = function (req, res) {
             info: doc.map(docs => {
                 return {
                     _id: docs._id,
-                    farmid: docs._id,
+                    farmid: docs.farmid,
                     o_name: docs.o_name,
                     o_address: docs.o_address
                 }
