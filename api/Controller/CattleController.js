@@ -131,6 +131,68 @@ exports.DeleteCattle = function (req, res) {
         });
 }
 
+exports.fetchbyfarm = function (req, res) {
+    Cattle.find(
+        {
+            farmid: req.params.id
+         },
+         {
+             cattle_id: true,
+             ownerid: true
+         }
+    )
+    .select('_id farmid ownerid')
+    .exec()
+    .then(doc => {
+        const response = {
+            count: doc.length,
+            info: doc.map(docs => {
+                return {
+                    _id: docs._id,
+                    farmid: docs.farmid,
+                    ownerid: docs.ownerid
+                }
+            })
+        }
+            res.status(200).json(response);  
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+    });
+};
+
+exports.fetchbyOwner = function (req, res) {
+    Cattle.find(
+        {
+            ownerid: req.params.id
+         },
+         {
+             cattle_id: true,
+             farmid: true
+         }
+    )
+    .select('_id farmid ownerid')
+    .exec()
+    .then(doc => {
+        const response = {
+            count: doc.length,
+            info: doc.map(docs => {
+                return {
+                    _id: docs._id,
+                    farmid: docs.farmid,
+                    ownerid: docs.ownerid
+                }
+            })
+        }
+            res.status(200).json(response);  
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+    });
+};
+
 
 
 
