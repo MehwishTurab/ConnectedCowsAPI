@@ -14,9 +14,7 @@ exports.CreatenewFarm = function (req, res) {
         else
             res.send({
                 message: "Farm created Successfully",
-                farm_id: result.farm_id,
-                f_name: result.f_name,
-                f_address: result.f_address
+                
             });
         console.log("Data entered");
     });
