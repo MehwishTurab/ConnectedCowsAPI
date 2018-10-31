@@ -5,6 +5,7 @@ const Cattle = require('../model/cattleSch');
 
 const Health = require('../model/healthSch');
 
+
 exports.AnalyseData = function() {
     Cattle.find()
     .select('_id farmid ownerid')
