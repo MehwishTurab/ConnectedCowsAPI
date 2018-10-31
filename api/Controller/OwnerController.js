@@ -75,6 +75,7 @@ exports.fetchoneOwner =  function (req,res){
                 return res.status(200).json(message = 'No owner With this ID')
             else
                 return res.status(200).json(owner)
+                
         }
     );
 };
@@ -132,3 +133,5 @@ exports.DeleteOwner = function (req, res) {
             });
         });
 }
+
+

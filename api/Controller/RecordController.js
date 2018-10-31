@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Record = require('../model/recordSch');
+const Record = require('../model/RecordSch');
 const Cattle = require('../model/cattleSch');
 
 
@@ -107,7 +107,6 @@ exports.UpdateRecord = function (req, res) {
         });
 }
    
-//Function to Delete an Employee
 exports.DeleteRecord = function (req, res) {
     Record.findOneAndRemove({
             _id: req.params.id
@@ -166,33 +165,3 @@ exports.fetchbyCattle = function (req, res) {
     });
 };
 
-exports.fetchbyDate = function (req, res) {
-    Cattle.find(
-        {
-            ownerid: req.params.id
-         },
-         {
-             cattle_id: true,
-             farmid: true
-         }
-    )
-    .select('_id farmid ownerid')
-    .exec()
-    .then(doc => {
-        const response = {
-            count: doc.length,
-            info: doc.map(docs => {
-                return {
-                    _id: docs._id,
-                    farmid: docs.farmid,
-                    ownerid: docs.ownerid
-                }
-            })
-        }
-            res.status(200).json(response);  
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({error: err});
-    });
-};
