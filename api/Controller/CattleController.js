@@ -4,6 +4,7 @@ const Cattle = require('../model/cattleSch');
 const Owner = require('../model/ownerSch');
 const Farm = require('../model/farmSch');
 
+
 exports.CreatenewCattle = function (req, res) {
     Owner.findOne(
         {
