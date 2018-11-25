@@ -53,7 +53,7 @@ exports.AnalyseData = function() {
             )
             console.log(response);
             console.log("Average temperature "+average(temp));
-            insertdata(ids[0],average(temp));
+            insert(ids[0],average(temp));
         } 
     ) 
     }
@@ -70,14 +70,93 @@ exports.AnalyseData = function() {
   }
 
   function insertdata(id,temp) {
+    var s;
+    if(temp < 100){
+        s = "Well";
+    }
+    else{
+        s = "Not Well";
+    }
     var health = new Health({
         cattleid : id,
         avg_temp : temp,
-        status: "Well"
+        status: s
     });
     health.save(function (err) {
-       console.log(err);
         console.log("Data entered");
     });
   }
+
+  function insert(id,temp) {
+    Health.findOne(
+        {
+           cattleid: id
+        },
+        
+        (err, health) => {
+            if (health != null){
+                deletedata(id);
+                console.log("deleted !!");
+            }
+            
+        }
+    );
+    insertdata(id,temp);
+  }
   
+  function deletedata(id) {
+    Health.deleteOne({
+            cattleid: id
+        })
+        .then(health => {
+            if (!health) {
+                console.log("Not found !!");
+            }
+            
+        })
+}
+
+exports.fetchallRecords = function (req, res) {
+    Health.find()
+    .select('_id cattleid avg_temp status')
+    .exec()
+    .then(doc => {
+        const response = {
+            count: doc.length,
+            info: doc.map(docs => {
+                return {
+                    cattleid: docs.cattleid,
+                    avg_temp: docs.avg_temp,
+                    status: docs.status
+                }
+            })
+        }
+            res.status(200).json(response);  
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+    });
+};
+
+
+exports.fetchoneRecord =  function (req,res){
+    Health.findOne(
+        {
+           cattleid: req.params.id
+        },
+        {
+            cattleid: true,
+            avg_temp: true,
+            status: true
+        },
+       
+        (err, health) => {
+            if (err) return res.status(200).send(err)
+            if (health == null)
+                return res.status(200).json(message = 'No record found')
+            else
+                return res.status(200).json(health)
+        }
+    );
+};

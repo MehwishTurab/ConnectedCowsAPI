@@ -9,5 +9,5 @@ const cron = require("node-cron");
 
 const analysis = require("./api/Controller/analysis.js");
 
-cron.schedule("*/5 * * * * *",analysis.AnalyseData);
+cron.schedule("* * * * *",analysis.AnalyseData);
 

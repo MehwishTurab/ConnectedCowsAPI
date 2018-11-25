@@ -19,6 +19,7 @@ exports.CreatenewOwner = function (req, res) {
                         farmid: req.body.farm_id,
                         o_name : req.body.o_name,
                         o_address : req.body.o_address,
+                        password: req.body.password
                     });
                     owner.save(function (err) {
                         if (err)
@@ -134,4 +135,34 @@ exports.DeleteOwner = function (req, res) {
         });
 }
 
-
+exports.login =  function (req,res){
+    Owner.findOne(
+        {
+            o_name: req.params.name,
+            password: req.params.password
+        },
+        {
+            farmid: true,
+            o_name: true,
+            o_address: true
+        },
+        
+        (err, owner) => {
+            if (err) return res.status(200).send(err)
+            if (owner == null){
+                console.log("Not found");
+                res.status(404).send({
+                    message: "Invalid username or password"
+                });
+                return false
+            }
+                
+            else
+            {
+                console.log("found");
+                res.status(200).json(owner);
+                return true
+            } 
+        }
+    );
+};

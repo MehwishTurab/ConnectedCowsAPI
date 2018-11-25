@@ -93,7 +93,7 @@ exports.UpdateFarm = function (req, res) {
         });
 }
    
-//Function to Delete an Employee
+
 exports.DeleteFarm = function (req, res) {
     Farm.findOneAndRemove({
             _id: req.params.id
