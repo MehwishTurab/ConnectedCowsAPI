@@ -5,7 +5,7 @@ const ownerController = require('../Controller/OwnerController');
 
 
 
-router.get('/login/:name/:password', ownerController.login);
+router.get('/:name/:password', ownerController.login);
 
 
 module.exports = router;

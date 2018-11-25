@@ -52,7 +52,7 @@ app.use('/owners',OwnerRoutes);
 app.use('/cattles',CattleRoutes);
 app.use('/records',RecordRoutes);
 app.use('/health',HealthRoutes);
-app.use('/owner',Login);
+app.use('/login',Login);
 
 app.use((req,res,next) => {
     const error = new Error('Not found');
