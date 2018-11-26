@@ -151,17 +151,17 @@ exports.login =  function (req,res){
             if (err) return res.status(200).send(err)
             if (owner == null){
                 console.log("Not found");
-                res.status(404).send({
+               return  res.status(404).send({
                     message: "Invalid username or password"
                 });
-                return false
+            
             }
                 
             else
             {
                 console.log("found");
-                res.status(200).json(owner);
-                return true
+                return res.status(200).json(owner);
+                
             } 
         }
     );
