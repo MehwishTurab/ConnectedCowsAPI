@@ -72,12 +72,22 @@ exports.AnalyseData = function() {
 
   function insertdata(id,temp) {
     var s;
-    if(temp < 100){
-        s = "Well";
+    if(temp > 37 && temp < 40){
+        s = "Normal";
     }
-    else{
-        s = "Not Well";
+    else if (temp < 38){
+        s = "Possibility of milk infection, poisoning or indigestion";
     }
+    else if (temp > 39 && temp < 42) {
+        s = "Not normal"
+    }
+    else if (temp > 41 && temp < 45) {
+        s = "Possibility of anthrax, influenza or foot or mouth disease";
+    }
+    else {
+        s = "Possibility of death"
+    }
+
     var health = new Health({
         cattleid : id,
         avg_temp : temp,
