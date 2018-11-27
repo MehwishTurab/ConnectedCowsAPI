@@ -12,8 +12,8 @@ const Login = require('./api/routes/login');
 const mongoose = require('mongoose');
 const path = require('path');
 
-var mongoURI = 'mongodb://localhost:27017/IoT'; // for prodcution use.mongodb.net:27017,cluster0-shard-00-01-aquse.mongodb.net:27017,cluster0-shard-00-02-aquse.mongodb.net:27017/IoT?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true
-//var mongoURI = 'mongodb://faizi:faizi@cluster0-shard-00-00-aquse.mongodb.net:27017,cluster0-shard-00-01-aquse.mongodb.net:27017,cluster0-shard-00-02-aquse.mongodb.net:27017/IoT?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
+//var mongoURI = 'mongodb://localhost:27017/IoT'; // for prodcution use.mongodb.net:27017,cluster0-shard-00-01-aquse.mongodb.net:27017,cluster0-shard-00-02-aquse.mongodb.net:27017/IoT?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true
+var mongoURI = 'mongodb://faizi:faizi@cluster0-shard-00-00-aquse.mongodb.net:27017,cluster0-shard-00-01-aquse.mongodb.net:27017,cluster0-shard-00-02-aquse.mongodb.net:27017/IoT?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
 
 
 // setting up Middle ware

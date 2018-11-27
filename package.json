@@ -11,7 +11,7 @@
     "restful",
     "api"
   ],
-  "author": "Mehwish Turab",
+  "author": "Mehwish Turab & Faizan Ejaz",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
