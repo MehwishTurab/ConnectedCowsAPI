@@ -8,6 +8,7 @@ const CattleRoutes = require('./api/routes/cattle');
 const RecordRoutes = require('./api/routes/record');
 const HealthRoutes = require('./api/routes/health');
 const Login = require('./api/routes/login');
+const Message = require('./api/routes/messages');
 
 const mongoose = require('mongoose');
 const path = require('path');
@@ -53,6 +54,7 @@ app.use('/cattles',CattleRoutes);
 app.use('/records',RecordRoutes);
 app.use('/health',HealthRoutes);
 app.use('/login',Login);
+app.use('/message',Message);
 
 app.use((req,res,next) => {
     const error = new Error('Not found');
