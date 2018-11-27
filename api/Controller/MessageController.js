@@ -7,7 +7,7 @@ exports.CreateNewMessage = function (req, res) {
     var message = new Message({
         message : req.body.message,
     });
-    farm.save(function (err) {
+    message.save(function (err) {
         if (err)
             return res.json(err);
         else
