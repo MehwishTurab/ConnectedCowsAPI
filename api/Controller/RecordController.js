@@ -18,7 +18,9 @@ exports.CreatenewRecord = function (req, res) {
                 {
                     var record = new Record({
                         cattleid: req.body.cattleid,
-                        temp : req.body.temp
+                        temp : req.body.temp,
+                        env_temp : req.body.etemp,
+                        env_humidity : req.body.ehumid,
                     });
                     record.save(function (err) {
                         if (err)
