@@ -38,7 +38,7 @@ exports.CreatenewRecord = function (req, res) {
 
 exports.fetchallRecords = function (req, res) {
     Record.find()
-    .select('_id cattleid createdOn temp')
+    .select('_id cattleid createdOn temp env_temp env_humid')
     .exec()
     .then(doc => {
         const response = {
@@ -48,7 +48,9 @@ exports.fetchallRecords = function (req, res) {
                     _id: docs._id,
                     cattleid: docs.cattleid,
                     createdOn: docs.createdOn,
-                    temp: docs.temp
+                    temp: docs.temp,
+                    env_humidity :docs.env_humidity,
+                    env_temp : docs.env_temp,
                 }
             })
         }
