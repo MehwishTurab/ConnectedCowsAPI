@@ -70,7 +70,9 @@ exports.fetchoneRecord =  function (req,res){
         {
             cattleid: true,
             createdOn: true,
-            temp: true
+            temp: true,
+            env_temp :true,
+            env_humidity: true
         },
         // callback function
         (err, record) => {
@@ -144,7 +146,9 @@ exports.fetchbyCattle = function (req, res) {
          {
              record_id: true,
              createdOn: true,
-             temp: true
+             temp: true,
+             env_humidity:true,
+             env_temp:true
          }
     )
     .select('_id cattleid createdOn temp')
@@ -157,7 +161,9 @@ exports.fetchbyCattle = function (req, res) {
                     _id: docs._id,
                     cattleid: docs.cattleid,
                     createdOn: docs.createdOn,
-                    temp: docs.temp
+                    temp: docs.temp,
+                    env_humidity:docs.env_humidity,
+                    env_temp:docs.env_temp
                 }
             })
         }
