@@ -139,7 +139,7 @@ exports.AnalyseData = function() {
 
 exports.fetchallRecords = function (req, res) {
     Health.find()
-    .select('_id cattleid avg_temp status')
+    .select('_id cattleid avg_temp env_avg_temp env_avg_humidity status')
     .exec()
     .then(doc => {
         const response = {
@@ -148,6 +148,8 @@ exports.fetchallRecords = function (req, res) {
                 return {
                     cattleid: docs.cattleid,
                     avg_temp: docs.avg_temp,
+                    env_avg_temp: docs.env_avg_temp,
+                    env_avg_humidity: docs.env_avg_humidity,
                     status: docs.status
                 }
             })
