@@ -62,7 +62,7 @@ exports.AnalyseData = function() {
             )
             console.log(response);
             console.log(`Average temperature ${average(temp)} Avg humidity ${average(env_humidity)} Avg env temp ${average(env_temp)}`);
-            insert(ids[0],average(temp));
+            insert(ids[0],average(temp),average(env_temp),average(env_humidity));
         } 
     ) 
     }
@@ -108,7 +108,7 @@ exports.AnalyseData = function() {
     });
   }
 
-  function insert(id,temp) {
+  function insert(id,temp,envTemp,envHumidity) {
     Health.findOne(
         {
            cattleid: id
@@ -122,7 +122,7 @@ exports.AnalyseData = function() {
             
         }
     );
-    insertdata(id,temp);
+    insertdata(id,temp,envHumidity,envTemp);
   }
   
   function deletedata(id) {
