@@ -148,8 +148,8 @@ exports.fetchallRecords = function (req, res) {
                 return {
                     cattleid: docs.cattleid,
                     avg_temp: docs.avg_temp,
-                    env_avg_temp: docs.env_avg_temp,
-                    env_avg_humidity: docs.env_avg_humidity,
+                    env_avg_temp: docs.avg_env_temp,
+                    env_avg_humidity: docs.avg_env_humidity,
                     status: docs.status
                 }
             })
