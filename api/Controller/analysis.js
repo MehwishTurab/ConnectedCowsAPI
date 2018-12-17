@@ -35,25 +35,33 @@ exports.AnalyseData = function() {
                  temp: true
              }
         )
-        .select('_id cattleid createdOn temp')
+        .select('_id cattleid createdOn temp env_temp env_humidity')
         .exec()
         .then(doc => {
             const response = {
                 info: doc.map(docs => {
                     return {
                         cattle: docs.cattleid,
-                        temperature: docs.temp
+                        temperature: docs.temp,
+                        env_temprature : docs.env_temp,
+                        env_humidity : docs.env_humidity,
                     }
                 })
             }
             const temp = doc.map(
                 docs => docs.temp
             )
+            const env_temp = doc.map(
+                docs => docs.env_temp
+            )
+            const env_humidity = doc.map(
+                docs => docs.env_humidity
+            )
             const ids = doc.map(
                 docs => docs.cattleid
             )
             console.log(response);
-            console.log("Average temperature "+average(temp));
+            console.log(`Average temperature ${average(temp)} Avg humidity ${average(env_humidity)} Avg env temp ${average(env_temp)}`);
             insert(ids[0],average(temp));
         } 
     ) 
@@ -70,7 +78,7 @@ exports.AnalyseData = function() {
       return avg;
   }
 
-  function insertdata(id,temp) {
+  function insertdata(id,temp,humidity,envTemp) {
     var s;
     if(temp > 37 && temp < 40){
         s = "Normal";
@@ -91,6 +99,8 @@ exports.AnalyseData = function() {
     var health = new Health({
         cattleid : id,
         avg_temp : temp,
+        avg_env_humidity : humidity,
+        avg_env_temp : envTemp,
         status: s
     });
     health.save(function (err) {
