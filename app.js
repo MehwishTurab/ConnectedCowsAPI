@@ -23,6 +23,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static('MobApp'));
+app.disable('etag');
 
 //setting up mongoDB connection
 
