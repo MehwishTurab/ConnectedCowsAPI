@@ -96,6 +96,17 @@ exports.AnalyseData = function() {
         s = "Possibility of death"
     }
 
+    if(humidity<72){
+        s+=" ,No Stress";
+    } else if(humidity>72 && humidity<79){
+        s+=" ,Mild Stress";
+    } else if(humidity>80 && humidity<90) {
+        s+=" ,Moderate Stress";
+    } else{
+        s+=" ,Severe Stress";
+    }
+
+
     var health = new Health({
         cattleid : id,
         avg_temp : temp,
