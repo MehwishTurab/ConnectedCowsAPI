@@ -81,7 +81,7 @@ exports.AnalyseData = function() {
   function insertdata(id,temp,humidity,envTemp) {
     var s;
     if(temp > 37 && temp < 40){
-        s = "Normal";
+        s = "Well";
     }
     else if (temp < 38){
         s = "Possibility of milk infection, poisoning or indigestion";
