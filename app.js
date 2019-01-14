@@ -17,13 +17,16 @@ const path = require('path');
 var mongoURI = 'mongodb://faizi:faizi@cluster0-shard-00-00-aquse.mongodb.net:27017,cluster0-shard-00-01-aquse.mongodb.net:27017,cluster0-shard-00-02-aquse.mongodb.net:27017/IoT?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
 
 
-// setting up Middle ware
 
+
+
+
+// setting up Middle ware
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static('MobApp'));
-app.disable('etag');
+
 
 //setting up mongoDB connection
 
